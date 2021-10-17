@@ -43,12 +43,12 @@ def training_model(args):
     y_Train_OneHot = np_utils.to_categorical(y_train_label)
     y_Test_OneHot = np_utils.to_categorical(y_test_label)
 
-    default_filter1=args.filter1
-    default_filter2=args.filter2
-    default_kernel_size1=args.kernel_size1 
-    default_kernel_size2=args.kernel_size2
-    default_epoch=args.epoch
-    default_batch=args.batch 
+    default_filter1=int(args.filter1)
+    default_filter2=int(args.filter2)
+    default_kernel_size1=int(args.kernel_size1)
+    default_kernel_size2=int(args.kernel_size2)
+    default_epoch=int(args.epoch)
+    default_batch=int(args.batch)
 
 
     #create a Sequential model
