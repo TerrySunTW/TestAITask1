@@ -25,11 +25,9 @@ def ParameterValidator(arguments):
     return args
 
 def SendTaskToTaskQueue(args):
-    credentials = pika.PlainCredentials('guest', 'guest')  # mq用户名和密码
-    # 虚拟队列需要指定参数 virtual_host，如果是默认的可以不填。
+    credentials = pika.PlainCredentials('guest', 'guest') 
     connection = pika.BlockingConnection(pika.ConnectionParameters(host = args.TaskServer,port = args.Port,virtual_host = '/',credentials = credentials))
     channel=connection.channel()
-    # 声明消息队列，消息将在这个队列传递，如不存在，则创建
     result = channel.queue_declare(queue = 'python-test',durable=True)
 
     message=json.dumps({
@@ -42,7 +40,6 @@ def SendTaskToTaskQueue(args):
         'Github_TaskResult':args.Github_TaskResult,
         'Github_TaskResult_BranchName':args.Github_TaskResult_BranchName
         })
-    # 向队列插入数值 routing_key是队列名
     channel.basic_publish(exchange = '',routing_key = 'python-test',body = message)
     print(message)
     connection.close()
