@@ -13,6 +13,7 @@ def ParameterValidator(arguments):
     parser.add_argument('-TaskServer', required=True, help="TaskServer IP or FQDN. (ex: 10.116.116.108:5672)")
     parser.add_argument('-Port', required=True, help="TaskServer port, (ex: 5672)")
     parser.add_argument('-Github_TaskGit', required=True, help="Github Git for custom script and dockerfile. (ex: https://github.com/TerrySunTW/TestAITask1.git)")
+    parser.add_argument('-Github_TaskBranch', required=True, help="Github branch for custom script and dockerfile. (ex: main)")
     parser.add_argument('-DockerFilePath', required=True, help="dockerfile filename for runtime environment, system will using the docker environment to run your script. (ex: docker/)")
     parser.add_argument('-TaskCommand', required=True, help="The commnad you need to run on the disribution system. (ex: python cnn_handwrite.py p1 p2 p3 )")
     parser.add_argument('-ArchiveFolderPath', required=True, help="Archive folderpath(ex:out)")
@@ -33,6 +34,7 @@ def SendTaskToTaskQueue(args):
 
     message=json.dumps({
         'Github_TaskGit':args.Github_TaskGit,
+        'Github_Branch':args.Github_TaskBranch,
         'DockerFilePath':args.DockerFilePath,
         'TaskCommand':args.TaskCommand,
         'ArchiveFolderPath':args.ArchiveFolderPath,
