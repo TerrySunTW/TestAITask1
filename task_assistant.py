@@ -32,7 +32,7 @@ def SendTaskToTaskQueue(args):
 
     message=json.dumps({
         'Github_TaskGit':args.Github_TaskGit,
-        'Github_Branch':args.Github_TaskBranch,
+        'Github_TaskBranch':args.Github_TaskBranch,
         'DockerFilePath':args.DockerFilePath,
         'TaskCommand':args.TaskCommand,
         'ArchiveFolderPath':args.ArchiveFolderPath,
