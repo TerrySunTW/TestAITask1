@@ -1,10 +1,8 @@
-FROM tensorflow/tensorflow
+FROM emacski/tensorflow-serving 
 RUN apt-get update && apt-get install -y \
     gpg-agent \
     wget \
     software-properties-common
-RUN wget -qO - https://repositories.intel.com/graphics/intel-graphics.key |apt-key add -
-RUN apt-add-repository 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main'
 RUN apt-get update && apt-get install -y 
 
 WORKDIR /usr/src/app
